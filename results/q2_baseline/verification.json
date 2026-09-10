@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "all_nine_original_workbooks_unchanged": true,
+  "full_year_intervals": 52560,
+  "formal_intervals": 48096,
+  "saved_costs_recomputed": true,
+  "saved_plans_balance_verified": true,
+  "checks": {
+    "balance_max_abs_kwh": 6.821210263296962e-13,
+    "soc_max_abs_kwh": 4.490630090003833e-12,
+    "continuity_max_abs_kwh": 0.0,
+    "min_soc_kwh": 1200.0,
+    "max_soc_kwh": 10800.0,
+    "max_charge_kw": 5000.0,
+    "max_discharge_kw": 5000.0,
+    "simultaneous_intervals": 0,
+    "emergency_while_charging": 0
+  },
+  "repeated_full_run_compared": true,
+  "repeat_tolerance": 1e-06
+}

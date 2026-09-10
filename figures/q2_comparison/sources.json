@@ -1,0 +1,7 @@
+{
+  "results\\q2_enhanced\\comparison.csv": "ed218c1e19f36b85e7052c11fb9555abe5bcacedaf5831b9312eb11c3ec2360a",
+  "results\\q2_enhanced\\enhanced\\ledger.csv": "404c607a6fd67c4c058dda7672070c0086a4d3a57e46273f11bd8fb242126598",
+  "results\\q2_enhanced\\enhanced\\daily.csv": "83625fce386e7462f4bac6cac759126e9d3c47ce39560ecabaabf8cb3a46ea56",
+  "results\\q2_baseline\\ledger.csv": "60ac62f20ddf745100f4f656b52ea5bd819d736dda02eea1a353f50aa365d576",
+  "results\\q2_baseline\\daily.csv": "bc2523f7b9828e0d4996f40ea2f7656759a3d50d4cfb77bdeabf89ecd3e215b1"
+}

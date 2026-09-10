@@ -1,0 +1,100 @@
+{
+  "original_attachments_and_baseline_unchanged": true,
+  "variants": {
+    "enhanced": {
+      "passed": true,
+      "checks": {
+        "balance_max_abs_kwh": 6.821210263296962e-13,
+        "soc_max_abs_kwh": 3.694822225952521e-12,
+        "continuity_max_abs_kwh": 0.0,
+        "min_soc_kwh": 1200.0,
+        "max_soc_kwh": 10800.0,
+        "max_charge_kw": 5000.000000000006,
+        "max_discharge_kw": 5000.000000000001,
+        "simultaneous_intervals": 0,
+        "emergency_while_charging": 0
+      },
+      "rows": 48096,
+      "same_initial_final": true,
+      "cost_recomputed": true,
+      "virtual_plan_not_executed_early": true,
+      "repeated_run_compared": true
+    },
+    "no_margin": {
+      "passed": true,
+      "checks": {
+        "balance_max_abs_kwh": 6.821210263296962e-13,
+        "soc_max_abs_kwh": 3.751665644813329e-12,
+        "continuity_max_abs_kwh": 0.0,
+        "min_soc_kwh": 1200.0,
+        "max_soc_kwh": 10800.0,
+        "max_charge_kw": 5000.000000000006,
+        "max_discharge_kw": 5000.000000000001,
+        "simultaneous_intervals": 0,
+        "emergency_while_charging": 0
+      },
+      "rows": 48096,
+      "same_initial_final": true,
+      "cost_recomputed": true,
+      "virtual_plan_not_executed_early": true,
+      "repeated_run_compared": false
+    },
+    "one_day": {
+      "passed": true,
+      "checks": {
+        "balance_max_abs_kwh": 6.821210263296962e-13,
+        "soc_max_abs_kwh": 3.694822225952521e-12,
+        "continuity_max_abs_kwh": 0.0,
+        "min_soc_kwh": 1200.0,
+        "max_soc_kwh": 10800.0,
+        "max_charge_kw": 5000.000000000006,
+        "max_discharge_kw": 5000.000000000001,
+        "simultaneous_intervals": 0,
+        "emergency_while_charging": 0
+      },
+      "rows": 48096,
+      "same_initial_final": true,
+      "cost_recomputed": true,
+      "virtual_plan_not_executed_early": true,
+      "repeated_run_compared": false
+    },
+    "alpha65": {
+      "passed": true,
+      "checks": {
+        "balance_max_abs_kwh": 6.821210263296962e-13,
+        "soc_max_abs_kwh": 3.751665644813329e-12,
+        "continuity_max_abs_kwh": 0.0,
+        "min_soc_kwh": 1200.0,
+        "max_soc_kwh": 10800.0,
+        "max_charge_kw": 5000.000000000006,
+        "max_discharge_kw": 5000.000000000001,
+        "simultaneous_intervals": 0,
+        "emergency_while_charging": 0
+      },
+      "rows": 48096,
+      "same_initial_final": true,
+      "cost_recomputed": true,
+      "virtual_plan_not_executed_early": true,
+      "repeated_run_compared": false
+    },
+    "alpha90": {
+      "passed": true,
+      "checks": {
+        "balance_max_abs_kwh": 9.094947017729282e-13,
+        "soc_max_abs_kwh": 3.694822225952521e-12,
+        "continuity_max_abs_kwh": 0.0,
+        "min_soc_kwh": 1200.0,
+        "max_soc_kwh": 10800.0,
+        "max_charge_kw": 5000.000000000006,
+        "max_discharge_kw": 5000.000000000001,
+        "simultaneous_intervals": 0,
+        "emergency_while_charging": 0
+      },
+      "rows": 48096,
+      "same_initial_final": true,
+      "cost_recomputed": true,
+      "virtual_plan_not_executed_early": true,
+      "repeated_run_compared": false
+    }
+  }
+}
