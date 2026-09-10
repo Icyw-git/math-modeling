@@ -1,0 +1,148 @@
+{
+  "scope": "Q1 conditional pilot, not final submission files",
+  "time_convention": "Endpoint timestamps are treated as the preceding 10-minute interval average; output is 00:00-24:00. Template label conflict remains open.",
+  "storage_initial_final_kwh": 6000,
+  "highs_version": "1.15.1",
+  "no_storage_cost_yuan": 48052.04659084667,
+  "no_storage_purchase_kwh": 61789.9354,
+  "primary": {
+    "model": "MILP",
+    "eta_charge": 0.9,
+    "eta_discharge": 0.9,
+    "status": "Optimal",
+    "cost_yuan": 35126.948589289634,
+    "purchase_kwh": 59482.69899835391,
+    "charge_grid_side_kwh": 20740.666131687245,
+    "discharge_grid_side_kwh": 16799.939566666668,
+    "unused_kwh": 0.0,
+    "checks": {
+      "balance_max_abs_kwh": 1.1368683772161603e-13,
+      "soc_transition_max_abs_kwh": 8.810729923425242e-13,
+      "min_soc_kwh": 1200.0,
+      "max_soc_kwh": 10800.0,
+      "start_soc_kwh": 6000.0,
+      "end_soc_kwh": 6000.0,
+      "max_charge_kw": 5000.0,
+      "max_discharge_kw": 4293.9182,
+      "simultaneous_intervals": 0,
+      "minimum_nonnegative_variable": 0.0
+    },
+    "mip_gap": 0.0,
+    "mip_dual_bound": 35126.948589289634
+  },
+  "lp_lower_bound": {
+    "model": "LP relaxation",
+    "eta_charge": 0.9,
+    "eta_discharge": 0.9,
+    "status": "Optimal",
+    "cost_yuan": 35126.948589289634,
+    "purchase_kwh": 59482.69899835391,
+    "charge_grid_side_kwh": 20740.666131687245,
+    "discharge_grid_side_kwh": 16799.939566666668,
+    "unused_kwh": 0.0,
+    "checks": {
+      "balance_max_abs_kwh": 1.1368683772161603e-13,
+      "soc_transition_max_abs_kwh": 8.810729923425242e-13,
+      "min_soc_kwh": 1200.0,
+      "max_soc_kwh": 10800.0,
+      "start_soc_kwh": 6000.0,
+      "end_soc_kwh": 6000.0,
+      "max_charge_kw": 5000.0,
+      "max_discharge_kw": 4293.9182,
+      "simultaneous_intervals": 0,
+      "minimum_nonnegative_variable": 0.0
+    }
+  },
+  "efficiency_roundtrip_90_percent": {
+    "model": "MILP",
+    "eta_charge": 0.9486832980505138,
+    "eta_discharge": 0.9486832980505138,
+    "status": "Optimal",
+    "cost_yuan": 33801.495542222016,
+    "purchase_kwh": 57526.24348088351,
+    "charge_grid_side_kwh": 19842.71047550178,
+    "discharge_grid_side_kwh": 17858.4394279516,
+    "unused_kwh": 0.0,
+    "checks": {
+      "balance_max_abs_kwh": 1.1368683772161603e-13,
+      "soc_transition_max_abs_kwh": 2.2737367544323206e-12,
+      "min_soc_kwh": 1200.0,
+      "max_soc_kwh": 10800.0,
+      "start_soc_kwh": 6000.0,
+      "end_soc_kwh": 6000.0,
+      "max_charge_kw": 5000.0,
+      "max_discharge_kw": 4293.9182,
+      "simultaneous_intervals": 0,
+      "minimum_nonnegative_variable": 0.0
+    },
+    "mip_gap": 0.0,
+    "mip_dual_bound": 33801.495542222016
+  },
+  "saving_yuan": 12925.098001557039,
+  "saving_fraction": 0.26898121762870164,
+  "primary_minus_lp_bound_yuan": 0.0,
+  "specified_intervals": [
+    {
+      "interval_start": "10:00",
+      "interval_end": "10:10",
+      "purchase_kwh": 0.0
+    },
+    {
+      "interval_start": "12:00",
+      "interval_end": "12:10",
+      "purchase_kwh": 480.41245000000004
+    },
+    {
+      "interval_start": "14:00",
+      "interval_end": "14:10",
+      "purchase_kwh": 0.0
+    },
+    {
+      "interval_start": "16:00",
+      "interval_end": "16:10",
+      "purchase_kwh": 445.43165000000005
+    },
+    {
+      "interval_start": "18:00",
+      "interval_end": "18:10",
+      "purchase_kwh": 531.8940499999999
+    },
+    {
+      "interval_start": "20:00",
+      "interval_end": "20:10",
+      "purchase_kwh": 0.0
+    }
+  ],
+  "four_hour_charge_discharge": [
+    {
+      "interval": "00:00-04:00",
+      "charge_kwh": 4500.0,
+      "discharge_kwh": 0.0
+    },
+    {
+      "interval": "04:00-08:00",
+      "charge_kwh": 833.3333333333334,
+      "discharge_kwh": 6365.8412
+    },
+    {
+      "interval": "08:00-12:00",
+      "charge_kwh": 4787.964288065847,
+      "discharge_kwh": 1702.9969833333334
+    },
+    {
+      "interval": "12:00-16:00",
+      "charge_kwh": 5286.035176954732,
+      "discharge_kwh": 91.10138333333339
+    },
+    {
+      "interval": "16:00-20:00",
+      "charge_kwh": 0.0,
+      "discharge_kwh": 5780.1318833333335
+    },
+    {
+      "interval": "20:00-24:00",
+      "charge_kwh": 5333.333333333334,
+      "discharge_kwh": 2859.868116666667
+    }
+  ]
+}

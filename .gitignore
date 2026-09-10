@@ -9,3 +9,32 @@ Thumbs.db
 *.log
 *.out
 *.toc
+
+# Project-local temporary files and dependencies
+/tmp/
+
+# Python tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# LaTeX intermediate files (keep final PDFs and figures)
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.blg
+*.bcf
+*.run.xml
+*.nav
+*.snm
+
+# Office lock files and editor swap files
+~$*
+*.swp
+*.swo
+
+# Local environment settings (keep the example)
+.env
+.env.*
+!.env.example
