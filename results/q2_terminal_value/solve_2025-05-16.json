@@ -1,0 +1,180 @@
+{
+  "records": [
+    {
+      "energy": 1200.0,
+      "value": 14856.015281413886,
+      "status": "Optimal",
+      "gap": 4.070585484513185e-05,
+      "seconds": 0.8638327000080608
+    },
+    {
+      "energy": 1600.0,
+      "value": 14668.179584296508,
+      "status": "Optimal",
+      "gap": 9.990296431472847e-05,
+      "seconds": 0.7781593999970937
+    },
+    {
+      "energy": 2000.0,
+      "value": 14479.55971871655,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06033989999559708
+    },
+    {
+      "energy": 2400.0,
+      "value": 14300.734332347722,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05656350000936072
+    },
+    {
+      "energy": 2800.0,
+      "value": 14134.580165772317,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.058212400006596
+    },
+    {
+      "energy": 3200.0,
+      "value": 13969.557943550091,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.060205200003110804
+    },
+    {
+      "energy": 3600.0,
+      "value": 13808.037876562463,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.059383399988291785
+    },
+    {
+      "energy": 4000.0,
+      "value": 13648.491606090556,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.059948900001472794
+    },
+    {
+      "energy": 4400.0,
+      "value": 13489.464539773056,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05627709999680519
+    },
+    {
+      "energy": 4800.0,
+      "value": 13331.028539773057,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.056021200012764893
+    },
+    {
+      "energy": 5200.0,
+      "value": 13172.79527650734,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05770069999562111
+    },
+    {
+      "energy": 5600.0,
+      "value": 13014.638579585437,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.060413100000005215
+    },
+    {
+      "energy": 6000.0,
+      "value": 12856.581287270676,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06761320000805426
+    },
+    {
+      "energy": 6400.0,
+      "value": 12698.751474902818,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07068390000495128
+    },
+    {
+      "energy": 6800.0,
+      "value": 12541.179040526627,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05548669998825062
+    },
+    {
+      "energy": 7200.0,
+      "value": 12383.718470994485,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05503679999674205
+    },
+    {
+      "energy": 7600.0,
+      "value": 12226.362470994485,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06087810000462923
+    },
+    {
+      "energy": 8000.0,
+      "value": 12069.112455509723,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05966980000084732
+    },
+    {
+      "energy": 8400.0,
+      "value": 11911.958061896152,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.059038400009740144
+    },
+    {
+      "energy": 8800.0,
+      "value": 11754.900088078057,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05706220000865869
+    },
+    {
+      "energy": 9200.0,
+      "value": 11597.951548179843,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0581703999923775
+    },
+    {
+      "energy": 9600.0,
+      "value": 11441.09986621377,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05736109999998007
+    },
+    {
+      "energy": 10000.0,
+      "value": 11284.283866213771,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0559915999911027
+    },
+    {
+      "energy": 10400.0,
+      "value": 11127.549465565555,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.054995900005451404
+    },
+    {
+      "energy": 10800.0,
+      "value": 10970.975519319023,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.055296599995926954
+    }
+  ],
+  "fallback": false
+}

@@ -1,5 +1,7 @@
 # C题附件核验、第一问试算与第二问基线/改进结果
 
+第三问精进实验：模型设计见 [Q3_REFINED_MODELING.md](Q3_REFINED_MODELING.md)，完成后的三组全年结果见 [Q3_REFINED_RESULTS.md](Q3_REFINED_RESULTS.md)。结果使用 `results/q3_refined/`，原报告与旧代码保留；图表为 `figures/q3_refined/comparison.pdf`、`cumulative.pdf`、`selected_soc.pdf`，数值源哈希随图保存。
+
 终端价值对照实验见 [Q2_TERMINAL_VALUE_REPORT.md](Q2_TERMINAL_VALUE_REPORT.md)：已通过原控制全年重放、6项新增测试及7天独立校验。全年新估值结果与图表以该报告的最新状态为准，不将短期试跑视为全年收益。预定图表为 `figures/q2_terminal_value/comparison.pdf` 和 `terminal_curves.pdf`，仅在全年校验通过后生成。
 
 ## 1. 完成范围与结论边界

@@ -1,0 +1,180 @@
+{
+  "records": [
+    {
+      "energy": 1200.0,
+      "value": 45322.407752366766,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07294149999506772
+    },
+    {
+      "energy": 1600.0,
+      "value": 45130.80775236676,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07214819999353494
+    },
+    {
+      "energy": 2000.0,
+      "value": 44939.29580724426,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07039049999730196
+    },
+    {
+      "energy": 2400.0,
+      "value": 44748.09580724426,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07039979999535717
+    },
+    {
+      "energy": 2800.0,
+      "value": 44556.913270498844,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07214840000960976
+    },
+    {
+      "energy": 3200.0,
+      "value": 44365.75771494329,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07549090000975411
+    },
+    {
+      "energy": 3600.0,
+      "value": 44174.81946732488,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08237689999805298
+    },
+    {
+      "energy": 4000.0,
+      "value": 43984.01946732488,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07142259999818634
+    },
+    {
+      "energy": 4400.0,
+      "value": 43793.516704783135,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07025530000100844
+    },
+    {
+      "energy": 4800.0,
+      "value": 43603.08316884738,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07481720000214409
+    },
+    {
+      "energy": 5200.0,
+      "value": 43412.9053910696,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07663259998662397
+    },
+    {
+      "energy": 5600.0,
+      "value": 43222.88427208377,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08085809998738114
+    },
+    {
+      "energy": 6000.0,
+      "value": 43033.0176054171,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0733464999939315
+    },
+    {
+      "energy": 6400.0,
+      "value": 42843.181325410354,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07884869999543298
+    },
+    {
+      "energy": 6800.0,
+      "value": 42653.35910318814,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07182520000787918
+    },
+    {
+      "energy": 7200.0,
+      "value": 42463.60894045631,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07426829999894835
+    },
+    {
+      "energy": 7600.0,
+      "value": 42273.87560712297,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07339239999419078
+    },
+    {
+      "energy": 8000.0,
+      "value": 42085.03589572464,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08495590000529774
+    },
+    {
+      "energy": 8400.0,
+      "value": 41896.25259742356,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07255450000229757
+    },
+    {
+      "energy": 8800.0,
+      "value": 41707.585930756904,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07309020000684541
+    },
+    {
+      "energy": 9200.0,
+      "value": 41522.03051211376,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07463360000110697
+    },
+    {
+      "energy": 9600.0,
+      "value": 41345.95089858218,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06873839999025222
+    },
+    {
+      "energy": 10000.0,
+      "value": 41173.23059977423,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06941379999625497
+    },
+    {
+      "energy": 10400.0,
+      "value": 41001.88029172187,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06779110000934452
+    },
+    {
+      "energy": 10800.0,
+      "value": 40836.27970328275,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07158879999769852
+    }
+  ],
+  "fallback": false
+}

@@ -1,0 +1,16 @@
+{
+  "total_fee_yuan": 13629358.914869241,
+  "plan_fee_yuan": 13329555.10795391,
+  "emergency_fee_yuan": 299803.8069153307,
+  "emergency_kwh": 91418.46744139834,
+  "adjustment_abs_kwh": 1759295.510163117,
+  "unused_kwh": 1510248.7954822918,
+  "conversion_loss_kwh": 1228273.3861153887,
+  "days": 334,
+  "intervals": 48096,
+  "start_soc": 1200,
+  "end_soc": 1200.0,
+  "seconds": 599.4597305000061,
+  "fallbacks": 0,
+  "max_gap": 0.000998814075709175
+}

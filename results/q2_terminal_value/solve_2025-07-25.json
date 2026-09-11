@@ -1,0 +1,180 @@
+{
+  "records": [
+    {
+      "energy": 1200.0,
+      "value": 29586.379318800904,
+      "status": "Optimal",
+      "gap": 1.1905449745649533e-05,
+      "seconds": 0.23947929999849293
+    },
+    {
+      "energy": 1600.0,
+      "value": 29397.579318800905,
+      "status": "Optimal",
+      "gap": 1.1983219763179502e-05,
+      "seconds": 0.23272489999362733
+    },
+    {
+      "energy": 2000.0,
+      "value": 29208.903798688574,
+      "status": "Optimal",
+      "gap": 1.1959616300383081e-05,
+      "seconds": 0.23740720000932924
+    },
+    {
+      "energy": 2400.0,
+      "value": 29020.70491169632,
+      "status": "Optimal",
+      "gap": 7.836951269203905e-06,
+      "seconds": 0.25814900000113994
+    },
+    {
+      "energy": 2800.0,
+      "value": 28840.15371287934,
+      "status": "Optimal",
+      "gap": 4.094108860084646e-06,
+      "seconds": 0.23881200001051184
+    },
+    {
+      "energy": 3200.0,
+      "value": 28671.124278518848,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.061001299996860325
+    },
+    {
+      "energy": 3600.0,
+      "value": 28505.96930938912,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06100750000041444
+    },
+    {
+      "energy": 4000.0,
+      "value": 28340.947087166896,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07005110000318382
+    },
+    {
+      "energy": 4400.0,
+      "value": 28180.57253656084,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06527030000870582
+    },
+    {
+      "energy": 4800.0,
+      "value": 28020.931675032294,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06550090000382625
+    },
+    {
+      "energy": 5200.0,
+      "value": 27861.739675032295,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07882280000194442
+    },
+    {
+      "energy": 5600.0,
+      "value": 27702.92958284894,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06582730000081938
+    },
+    {
+      "energy": 6000.0,
+      "value": 27544.49358284894,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0670337999908952
+    },
+    {
+      "energy": 6400.0,
+      "value": 27386.20927718298,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06684569999924861
+    },
+    {
+      "energy": 6800.0,
+      "value": 27227.989277182984,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06277859999681823
+    },
+    {
+      "energy": 7200.0,
+      "value": 27069.835474734922,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06504649999260437
+    },
+    {
+      "energy": 7600.0,
+      "value": 26911.724559814524,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06012289998761844
+    },
+    {
+      "energy": 8000.0,
+      "value": 26753.720559814523,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.060696000000461936
+    },
+    {
+      "energy": 8400.0,
+      "value": 26595.880331139884,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06526920000032987
+    },
+    {
+      "energy": 8800.0,
+      "value": 26438.272331139884,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05905779999739025
+    },
+    {
+      "energy": 9200.0,
+      "value": 26280.752452137822,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0604726000019582
+    },
+    {
+      "energy": 9600.0,
+      "value": 26123.288452137822,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06042239999806043
+    },
+    {
+      "energy": 10000.0,
+      "value": 25965.91241083651,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05878219999431167
+    },
+    {
+      "energy": 10400.0,
+      "value": 25808.567485520907,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06432649999624118
+    },
+    {
+      "energy": 10800.0,
+      "value": 25651.355485520908,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06343149999156594
+    }
+  ],
+  "fallback": false
+}
