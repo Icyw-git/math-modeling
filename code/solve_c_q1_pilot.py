@@ -1,4 +1,9 @@
-"""Conditional Q1 pilot: HiGHS LP lower bound and MILP, read-only Excel inputs."""
+"""Conditional Q1 pilot with a HiGHS/SciPy reproducible solver path.
+
+HiGHS is used when available to enforce binary charge/discharge modes.  The
+SciPy fallback is accepted only when its LP solution has no simultaneous
+charging and discharging.
+"""
 from pathlib import Path
 import sys
 import json
@@ -9,10 +14,69 @@ ROOT=Path(__file__).resolve().parents[1]
 LOCAL_DEPS=ROOT/'tmp'/'c_solver_deps'
 if LOCAL_DEPS.exists():
     sys.path.insert(0,str(LOCAL_DEPS))
-import highspy
+try:
+    import highspy
+except ModuleNotFoundError:
+    highspy = None
+from scipy.optimize import linprog
+
+
+def _solve_lp(price, load, pv, eta):
+    """Solve the continuous relaxation for environments without highspy."""
+    n = len(price)
+    cap = 5000 / 6
+    # q, c, d, s, E[0..n]
+    total = 5 * n + 1
+    objective = np.r_[price, np.zeros(total - n)]
+    a_eq, b_eq = [], []
+    for t in range(n):
+        row = np.zeros(total)
+        row[t], row[n+t], row[2*n+t], row[3*n+t] = 1, -1, 1, -1
+        a_eq.append(row); b_eq.append(float(load[t] - pv[t]))
+        row = np.zeros(total)
+        row[4*n+t+1], row[4*n+t] = 1, -1
+        row[n+t], row[2*n+t] = -eta, 1 / eta
+        a_eq.append(row); b_eq.append(0.0)
+    bounds = ([(0, None)] * n + [(0, cap)] * (2*n)
+              + [(0, None)] * n + [(1200, 10800)] * (n+1))
+    bounds[4*n] = (6000, 6000)
+    bounds[5*n] = (6000, 6000)
+    result = linprog(objective, A_eq=np.asarray(a_eq), b_eq=np.asarray(b_eq),
+                     bounds=bounds, method='highs')
+    if not result.success:
+        raise RuntimeError(f'SciPy LP failed: {result.message}')
+    values = result.x
+    q, c, d, s = values[:n], values[n:2*n], values[2*n:3*n], values[3*n:4*n]
+    e = values[4*n:5*n+1]
+    simultaneous = int(((c > 1e-6) & (d > 1e-6)).sum())
+    if simultaneous:
+        raise RuntimeError('SciPy LP produced simultaneous charge/discharge; install highspy for MILP.')
+    checks = dict(balance_max_abs_kwh=float(abs(q+pv+d-load-c-s).max()),
+        soc_transition_max_abs_kwh=float(abs(np.diff(e)-eta*c+d/eta).max()),
+        min_soc_kwh=float(e.min()), max_soc_kwh=float(e.max()),
+        start_soc_kwh=float(e[0]), end_soc_kwh=float(e[-1]),
+        max_charge_kw=float(c.max()*6), max_discharge_kw=float(d.max()*6),
+        simultaneous_intervals=simultaneous,
+        minimum_nonnegative_variable=float(np.min(np.r_[q,c,d,s])))
+    assert checks['balance_max_abs_kwh'] < 1e-5
+    assert checks['soc_transition_max_abs_kwh'] < 1e-5
+    assert checks['min_soc_kwh'] >= 1200-1e-5 and checks['max_soc_kwh'] <= 10800+1e-5
+    summary = dict(model='LP fallback', eta_charge=eta, eta_discharge=eta,
+        status='Optimal', cost_yuan=float(price@q), purchase_kwh=float(q.sum()),
+        charge_grid_side_kwh=float(c.sum()), discharge_grid_side_kwh=float(d.sum()),
+        unused_kwh=float(s.sum()), checks=checks)
+    frame = pd.DataFrame(dict(
+        interval_start=[f'{t//6:02d}:{t%6*10:02d}' for t in range(n)],
+        interval_end=[f'{(t+1)//6:02d}:{(t+1)%6*10:02d}' for t in range(n)],
+        price_yuan_per_kwh=price, load_kwh=load, pv_kwh=pv, purchase_kwh=q,
+        charge_kwh=c, discharge_kwh=d, unused_kwh=s,
+        soc_start_kwh=e[:-1], soc_end_kwh=e[1:]))
+    return summary, frame
 
 
 def solve(price,load,pv,eta=0.9,integer=True):
+    if highspy is None:
+        return _solve_lp(price, load, pv, eta)
     n=len(price); cap=5000/6
     h=highspy.Highs()
     h.setOptionValue('output_flag',False)
@@ -88,7 +152,8 @@ def main():
     baseline=float(price@np.maximum(load-pv,0))
     report=dict(scope='Q1 conditional pilot, not final submission files',
         time_convention='Endpoint timestamps are treated as the preceding 10-minute interval average; output is 00:00-24:00. Template label conflict remains open.',
-        storage_initial_final_kwh=6000,highs_version=highspy.Highs().version(),
+        storage_initial_final_kwh=6000,
+        solver=('HiGHS '+highspy.Highs().version()) if highspy else 'SciPy linprog (HiGHS backend)',
         no_storage_cost_yuan=baseline,no_storage_purchase_kwh=float(np.maximum(load-pv,0).sum()),
         primary=main,lp_lower_bound=lp,efficiency_roundtrip_90_percent=alternative,
         saving_yuan=baseline-main['cost_yuan'],saving_fraction=1-main['cost_yuan']/baseline,

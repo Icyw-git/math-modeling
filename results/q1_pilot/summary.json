@@ -2,11 +2,11 @@
   "scope": "Q1 conditional pilot, not final submission files",
   "time_convention": "Endpoint timestamps are treated as the preceding 10-minute interval average; output is 00:00-24:00. Template label conflict remains open.",
   "storage_initial_final_kwh": 6000,
-  "highs_version": "1.15.1",
+  "solver": "SciPy linprog (HiGHS backend)",
   "no_storage_cost_yuan": 48052.04659084667,
   "no_storage_purchase_kwh": 61789.9354,
   "primary": {
-    "model": "MILP",
+    "model": "LP fallback",
     "eta_charge": 0.9,
     "eta_discharge": 0.9,
     "status": "Optimal",
@@ -26,12 +26,10 @@
       "max_discharge_kw": 4293.9182,
       "simultaneous_intervals": 0,
       "minimum_nonnegative_variable": 0.0
-    },
-    "mip_gap": 0.0,
-    "mip_dual_bound": 35126.948589289634
+    }
   },
   "lp_lower_bound": {
-    "model": "LP relaxation",
+    "model": "LP fallback",
     "eta_charge": 0.9,
     "eta_discharge": 0.9,
     "status": "Optimal",
@@ -54,18 +52,18 @@
     }
   },
   "efficiency_roundtrip_90_percent": {
-    "model": "MILP",
+    "model": "LP fallback",
     "eta_charge": 0.9486832980505138,
     "eta_discharge": 0.9486832980505138,
     "status": "Optimal",
-    "cost_yuan": 33801.495542222016,
+    "cost_yuan": 33801.49554222201,
     "purchase_kwh": 57526.24348088351,
     "charge_grid_side_kwh": 19842.71047550178,
     "discharge_grid_side_kwh": 17858.4394279516,
     "unused_kwh": 0.0,
     "checks": {
       "balance_max_abs_kwh": 1.1368683772161603e-13,
-      "soc_transition_max_abs_kwh": 2.2737367544323206e-12,
+      "soc_transition_max_abs_kwh": 8.526512829121202e-13,
       "min_soc_kwh": 1200.0,
       "max_soc_kwh": 10800.0,
       "start_soc_kwh": 6000.0,
@@ -74,9 +72,7 @@
       "max_discharge_kw": 4293.9182,
       "simultaneous_intervals": 0,
       "minimum_nonnegative_variable": 0.0
-    },
-    "mip_gap": 0.0,
-    "mip_dual_bound": 33801.495542222016
+    }
   },
   "saving_yuan": 12925.098001557039,
   "saving_fraction": 0.26898121762870164,
