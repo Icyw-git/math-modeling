@@ -17,11 +17,16 @@ import solve_c_q2_baseline as base
 ROOT = base.ROOT
 CFG = base.Config()
 VARIANTS = {
-    'enhanced': dict(alpha=.8, horizon=288),
-    'no_margin': dict(alpha=None, horizon=288),
-    'one_day': dict(alpha=.8, horizon=144),
-    'alpha65': dict(alpha=.65, horizon=288),
-    'alpha90': dict(alpha=.9, horizon=288),
+    'enhanced': dict(alpha=.8, horizon=288, margin='slot_quantile'),
+    'no_margin': dict(alpha=None, horizon=288, margin='slot_quantile'),
+    'one_day': dict(alpha=.8, horizon=144, margin='slot_quantile'),
+    'alpha65': dict(alpha=.65, horizon=288, margin='slot_quantile'),
+    'alpha90': dict(alpha=.9, horizon=288, margin='slot_quantile'),
+    'soc_scaled': dict(alpha=.8, horizon=288, margin='soc_scaled'),
+    'cum_quantile': dict(alpha=.8, horizon=288, margin='cum_quantile'),
+    'cum85': dict(alpha=.85, horizon=288, margin='cum_quantile'),
+    'cum90': dict(alpha=.90, horizon=288, margin='cum_quantile'),
+    'cum95': dict(alpha=.95, horizon=288, margin='cum_quantile'),
 }
 
 
@@ -176,6 +181,26 @@ def dp_dispatch(q, load, pv, e, grid, continuation, remaining, terminal=False, c
     return a
 
 
+# Day-ahead safety margin added to the net-demand forecast.
+# slot_quantile: original per-slot alpha quantile, which hedges all 144 slots at once.
+# soc_scaled:    the same hedge, scaled by the storage headroom available at 0:00.
+# cum_quantile:  alpha quantile of the cumulative residual path, so the added margin
+#                follows a coherent joint path instead of independent per-slot hedges.
+def margin_path(pool, mode, alpha, e_start, cfg=CFG):
+    if alpha is None:
+        return np.zeros(144)
+    hedge = np.maximum(np.quantile(pool, alpha, axis=0), 0)
+    if mode == 'slot_quantile':
+        return hedge
+    if mode == 'soc_scaled':
+        headroom = (cfg.emax - e_start) / (cfg.emax - cfg.emin)
+        return hedge * float(np.clip(headroom, 0.0, 1.0))
+    if mode == 'cum_quantile':
+        q = np.maximum(np.quantile(np.cumsum(pool, axis=1), alpha, axis=0), 0)
+        return np.maximum(np.diff(np.r_[0.0, q]), 0.0)
+    raise ValueError(mode)
+
+
 def run_variant(dates, load, pv, prices, archives, warmup, name, grid_size=49, end_day=365):
     options = VARIANTS[name]
     pl,pvpred,selection = archives
@@ -187,7 +212,7 @@ def run_variant(dates, load, pv, prices, archives, warmup, name, grid_size=49, e
         date = pd.Timestamp(dates[day])
         pool = residual_pool(day,net,prediction)
         paths,prior,indices = representative_paths(pool)
-        margin = np.zeros(144) if options['alpha'] is None else np.maximum(np.quantile(pool,options['alpha'],axis=0),0)
+        margin = margin_path(pool, options.get('margin', 'slot_quantile'), options['alpha'], e)
         n = min(options['horizon'],144*(len(dates)-day))
         # The second-day plan is virtual lookahead only and never contracted early.
         future_l = pl[day].reshape(-1)[:n]+np.tile(margin,2)[:n]
