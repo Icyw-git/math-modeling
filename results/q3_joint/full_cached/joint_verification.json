@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "windows": 1336,
+  "terminal_curves": 334,
+  "terminal_solver_fallbacks": 398,
+  "all_selected_candidates_minimum": true,
+  "history_strictly_past": true,
+  "energy_totals_match": true
+}
