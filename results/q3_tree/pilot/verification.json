@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "intervals": 1008,
+  "max_balance": 6.821210263296962e-13,
+  "max_soc": 3.637978807091713e-12,
+  "contract_versions_rebuilt": true,
+  "source_hashes_preserved": true
+}

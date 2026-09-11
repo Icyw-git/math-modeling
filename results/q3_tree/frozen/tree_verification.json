@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "windows": 1336,
+  "fallbacks": 1,
+  "max_planned_soc_error": 1.4631016645141572e-09,
+  "max_leaves": 7,
+  "history_strictly_past": true,
+  "node_contracts_shared": true,
+  "actual_root_versions_match": true,
+  "daily_annual_energy_and_cost_totals_match": true
+}

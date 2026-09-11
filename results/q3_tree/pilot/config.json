@@ -1,0 +1,41 @@
+{
+  "mode": "four_stage_tree",
+  "end_day": 38,
+  "grid_size": 97,
+  "time_limit": 15.0,
+  "scenario_count": "all preceding 28 completed days (23 at first day)",
+  "update_hours": [
+    6,
+    12,
+    18
+  ],
+  "ridge_scale_kwh": 25,
+  "posterior_floor": 0.1,
+  "hashes": {
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\code\\solve_c_q3_refined.py": "34a0efcd794b92448c5c6be12ee849634af087d526f392a4764473b6f2eb81a6",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\code\\q3_refined_contract.py": "08b64471c247ff4c57d898c3ff1138377e11e782f4318fe9321a1101093dda53",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\code\\solve_c_q3_latest.py": "88318371e2f62f16bb70e0346ef70b887225aff2014fd737b40f7bba05490f13",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\code\\solve_c_q2_enhanced.py": "58c277cb9a2e35735e9c139f76696b005dc53d3c7da5bdc58d73d87e37ca5f70",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\CUMCM2026Problems\\C\u9898\\\u9644\u4ef6\\\u9644\u4ef61.xlsx": "66b87134f5ecccd68184d3539bb1293ef039f9e0fdd955a589b9bfa7f227c377",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\CUMCM2026Problems\\C\u9898\\\u9644\u4ef6\\\u9644\u4ef62.xlsx": "2e95fd446bfafa0d8c59577b5c2e2ea8b3f1def20dde54a3062556f4da9b4c72",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\CUMCM2026Problems\\C\u9898\\\u9644\u4ef6\\\u9644\u4ef63.xlsx": "8a61b06c52bd0d639a1cc37c61a7d9f5b75edcbca718f64c1bd3498ec9f9d843",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\code\\solve_c_q3_tree.py": "f143dcae578f77e41efc4160c98ef32fff89200b7203290a1b65127a8f5a98f7",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\code\\q3_scenario_tree.py": "55efb47d9b6cfb826ecd2b9c1eb6ae700627c0ceb9eb58982e8181f5d863ff12"
+  },
+  "branches": 3,
+  "allow_future_adjustments": true,
+  "eta_charge": 0.9,
+  "eta_discharge": 0.9,
+  "terminal_rate": 0.41255555555555556,
+  "information_hours": [
+    0,
+    6,
+    12,
+    18
+  ],
+  "battery_planning": "node-shared scheduled actions; conservative six-hour approximation",
+  "control": "node-conditioned Bellman; actual current interval response",
+  "annual_initial_soc": 1200,
+  "annual_terminal_soc": 1200,
+  "january": "shared previous warmup ending at 1200 kWh"
+}

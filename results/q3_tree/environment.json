@@ -1,0 +1,15 @@
+{
+  "versions": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "3.0.1",
+    "matplotlib": "3.11.1",
+    "highspy": "1.15.1",
+    "scipy": "1.18.1"
+  },
+  "solver_threads": 1,
+  "random_seed": 0,
+  "mip_relative_gap": 0.001,
+  "time_limit_seconds": 15,
+  "nominal_grid_kwh": 100
+}
