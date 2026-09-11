@@ -1,0 +1,180 @@
+{
+  "records": [
+    {
+      "energy": 1200.0,
+      "value": 22323.856452433254,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07107059999543708
+    },
+    {
+      "energy": 1600.0,
+      "value": 22132.256452433256,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06942240000353195
+    },
+    {
+      "energy": 2000.0,
+      "value": 21940.656452433253,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07166239999060053
+    },
+    {
+      "energy": 2400.0,
+      "value": 21749.29527375329,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07232839999778662
+    },
+    {
+      "energy": 2800.0,
+      "value": 21558.09527375329,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06912010000087321
+    },
+    {
+      "energy": 3200.0,
+      "value": 21366.934894552414,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06980430000112392
+    },
+    {
+      "energy": 3600.0,
+      "value": 21175.79779460019,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07007780000276398
+    },
+    {
+      "energy": 4000.0,
+      "value": 20984.98497483458,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06950030000007246
+    },
+    {
+      "energy": 4400.0,
+      "value": 20794.21703876093,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06729720000294037
+    },
+    {
+      "energy": 4800.0,
+      "value": 20603.772594316488,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06790030001138803
+    },
+    {
+      "energy": 5200.0,
+      "value": 20413.428594150133,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07552120000764262
+    },
+    {
+      "energy": 5600.0,
+      "value": 20223.250816372358,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07062700000824407
+    },
+    {
+      "energy": 6000.0,
+      "value": 20033.263777911296,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06897120000212453
+    },
+    {
+      "energy": 6400.0,
+      "value": 19843.397111244627,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0710220000037225
+    },
+    {
+      "energy": 6800.0,
+      "value": 19653.569991230423,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07192240000586025
+    },
+    {
+      "energy": 7200.0,
+      "value": 19463.771886745344,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07044759999553207
+    },
+    {
+      "energy": 7600.0,
+      "value": 19274.03855341201,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07025619999330956
+    },
+    {
+      "energy": 8000.0,
+      "value": 19084.75375742363,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07183200000145007
+    },
+    {
+      "energy": 8400.0,
+      "value": 18895.953757423635,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07206400000723079
+    },
+    {
+      "energy": 8800.0,
+      "value": 18707.242890002683,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0747068000055151
+    },
+    {
+      "energy": 9200.0,
+      "value": 18518.576223336015,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07521209999686107
+    },
+    {
+      "energy": 9600.0,
+      "value": 18334.79991777037,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06835760000103619
+    },
+    {
+      "energy": 10000.0,
+      "value": 18156.91773195969,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07555399999546353
+    },
+    {
+      "energy": 10400.0,
+      "value": 17989.855447986432,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0726481000019703
+    },
+    {
+      "energy": 10800.0,
+      "value": 17825.34330663265,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07155849999981001
+    }
+  ],
+  "fallback": false
+}

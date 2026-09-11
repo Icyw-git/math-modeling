@@ -1,0 +1,20 @@
+{
+  "linear": false,
+  "end_day": 365,
+  "hashes": {
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\code\\run_c_q2_terminal.py": "2980ed3c7d0f572f8e5b929ec77e38a5b38a5fa6300bb6d815cfd8ed426af4be",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\code\\q2_terminal_value.py": "4c73b65cc6146f36f0954df6a011eef251c8d8fb829beda05f659c5d772da53f",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\code\\solve_c_q2_enhanced.py": "8b84ef4c09010d2aafb1e63fa2e181a80135e6bd8675a4319cb06c36eabb03dd",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\code\\solve_c_q2_baseline.py": "6136b798176085c762d7cf3751bfe9b7501690ea635f2d66dcb212c3b77137a7",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\CUMCM2026Problems\\C\u9898\\\u9644\u4ef6\\\u9644\u4ef61.xlsx": "66b87134f5ecccd68184d3539bb1293ef039f9e0fdd955a589b9bfa7f227c377",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\CUMCM2026Problems\\C\u9898\\\u9644\u4ef6\\\u9644\u4ef62.xlsx": "2e95fd446bfafa0d8c59577b5c2e2ea8b3f1def20dde54a3062556f4da9b4c72",
+    "C:\\Users\\PC\\Desktop\\\u6570\u6a21\u6bd4\u8d5b\\results\\q2_enhanced_grid193\\enhanced\\ledger.csv": "1c05a011e650912d3b126ee15ed97179e5ae69554a663becfd7f6821d684406c"
+  },
+  "terminal_grid_kwh": 400,
+  "control_grid_kwh": 50,
+  "lookahead_days": 1,
+  "scenario_count": 7,
+  "approximation": "Independent scenario recourse; optimistic two-stage proxy; next-day tail linear except annual closure",
+  "time_limit": 60,
+  "gap": 0.001
+}
