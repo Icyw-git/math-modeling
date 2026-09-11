@@ -1,0 +1,31 @@
+{
+  "physical": {
+    "eta": 0.9,
+    "emin": 1200.0,
+    "emax": 10800.0,
+    "initial": 6000.0,
+    "target": 6000.0,
+    "power_kw": 5000.0,
+    "dt_hours": 0.16666666666666666,
+    "emergency_multiplier": 5.0,
+    "time_limit": 60.0,
+    "mip_gap": 0.001,
+    "seed": 0,
+    "tolerance": 1e-06
+  },
+  "grid_size": 193,
+  "end_day": 365,
+  "waste_price": 0.018565,
+  "objective": "Plan cost + expected emergency cost + terminal penalty + rho*(unused + conversion loss)",
+  "planning_limit": "Shared purchases; full-path recourse is optimistic approximation, NOT realized control",
+  "unchanged_control": "Original forecast archive, scenario_update, value_table and dp_dispatch functions",
+  "input_sha256": {
+    "CUMCM2026Problems\\C题\\附件\\附件1.xlsx": "66b87134f5ecccd68184d3539bb1293ef039f9e0fdd955a589b9bfa7f227c377",
+    "CUMCM2026Problems\\C题\\附件\\附件2.xlsx": "2e95fd446bfafa0d8c59577b5c2e2ea8b3f1def20dde54a3062556f4da9b4c72",
+    "results\\q2_enhanced_grid193\\enhanced\\ledger.csv": "1c05a011e650912d3b126ee15ed97179e5ae69554a663becfd7f6821d684406c",
+    "results\\q2_enhanced_grid193\\enhanced\\daily.csv": "2f0eb034eedf348aaa6fddb149b6e914910983ae3d472a07e84b6c6810a3bf7a",
+    "code\\solve_c_q2_enhanced.py": "8b84ef4c09010d2aafb1e63fa2e181a80135e6bd8675a4319cb06c36eabb03dd",
+    "code\\solve_c_q2_baseline.py": "6136b798176085c762d7cf3751bfe9b7501690ea635f2d66dcb212c3b77137a7",
+    "code\\solve_c_q2_low_waste.py": "88be450f2ee4e463e3774e368e779846dbee0a3f439600fbf6baf9420e3b8af1"
+  }
+}

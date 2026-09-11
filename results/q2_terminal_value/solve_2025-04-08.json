@@ -1,0 +1,180 @@
+{
+  "records": [
+    {
+      "energy": 1200.0,
+      "value": 37909.92381672326,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08446969999931753
+    },
+    {
+      "energy": 1600.0,
+      "value": 37718.32381672327,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08045109998784028
+    },
+    {
+      "energy": 2000.0,
+      "value": 37526.723816723264,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08513890000176616
+    },
+    {
+      "energy": 2400.0,
+      "value": 37335.123816723266,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08913480000046548
+    },
+    {
+      "energy": 2800.0,
+      "value": 37143.904832182016,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08780109998770058
+    },
+    {
+      "energy": 3200.0,
+      "value": 36952.71042501937,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0851020999980392
+    },
+    {
+      "energy": 3600.0,
+      "value": 36761.55486946382,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.09123780000663828
+    },
+    {
+      "energy": 4000.0,
+      "value": 36570.515864404624,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.09217390000412706
+    },
+    {
+      "energy": 4400.0,
+      "value": 36379.71586440462,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08070310000039171
+    },
+    {
+      "energy": 4800.0,
+      "value": 36189.117513696845,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07801919999474194
+    },
+    {
+      "energy": 5200.0,
+      "value": 35998.6730692524,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07909709999512415
+    },
+    {
+      "energy": 5600.0,
+      "value": 35808.46042480712,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08112959998834413
+    },
+    {
+      "energy": 6000.0,
+      "value": 35618.28959230752,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08255170000484213
+    },
+    {
+      "energy": 6400.0,
+      "value": 35428.42292564085,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08630019999691285
+    },
+    {
+      "energy": 6800.0,
+      "value": 35238.56583337127,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0839471999934176
+    },
+    {
+      "energy": 7200.0,
+      "value": 35048.743611149046,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.0931912999949418
+    },
+    {
+      "energy": 7600.0,
+      "value": 34858.95722813127,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08751890000712592
+    },
+    {
+      "energy": 8000.0,
+      "value": 34669.223894797935,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08914480000385083
+    },
+    {
+      "energy": 8400.0,
+      "value": 34480.042636006925,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08614029998716433
+    },
+    {
+      "energy": 8800.0,
+      "value": 34291.24263600692,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08521319999999832
+    },
+    {
+      "energy": 9200.0,
+      "value": 34102.533638904846,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.09666650000144728
+    },
+    {
+      "energy": 9600.0,
+      "value": 33913.866972238175,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.09290050000709016
+    },
+    {
+      "energy": 10000.0,
+      "value": 33735.44227601123,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.08474469999782741
+    },
+    {
+      "energy": 10400.0,
+      "value": 33563.97906685081,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07753570000932086
+    },
+    {
+      "energy": 10800.0,
+      "value": 33398.95263323835,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.07798570000159089
+    }
+  ],
+  "fallback": false
+}

@@ -1,0 +1,180 @@
+{
+  "records": [
+    {
+      "energy": 1200.0,
+      "value": 13526.772441339663,
+      "status": "Optimal",
+      "gap": 0.00018076213307106437,
+      "seconds": 1.9253877000010107
+    },
+    {
+      "energy": 1600.0,
+      "value": 13336.388449545499,
+      "status": "Optimal",
+      "gap": 9.216357314925532e-05,
+      "seconds": 1.9389777000033064
+    },
+    {
+      "energy": 2000.0,
+      "value": 13148.43229063589,
+      "status": "Optimal",
+      "gap": 0.00016022165565370626,
+      "seconds": 1.8139113999932306
+    },
+    {
+      "energy": 2400.0,
+      "value": 12958.745654588674,
+      "status": "Optimal",
+      "gap": 8.365797460814906e-05,
+      "seconds": 1.610186399993836
+    },
+    {
+      "energy": 2800.0,
+      "value": 12770.491055656774,
+      "status": "Optimal",
+      "gap": 0.00011793146563965762,
+      "seconds": 1.919266199998674
+    },
+    {
+      "energy": 3200.0,
+      "value": 12582.500394552668,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06183750000491273
+    },
+    {
+      "energy": 3600.0,
+      "value": 12411.249976815183,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06002520000038203
+    },
+    {
+      "energy": 4000.0,
+      "value": 12246.227754592961,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.06119049999688286
+    },
+    {
+      "energy": 4400.0,
+      "value": 12083.145776366255,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05937400000402704
+    },
+    {
+      "energy": 4800.0,
+      "value": 11923.181134517214,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05728210000961553
+    },
+    {
+      "energy": 5200.0,
+      "value": 11763.548634823039,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.057800199996563606
+    },
+    {
+      "energy": 5600.0,
+      "value": 11604.422760513153,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05956680000235792
+    },
+    {
+      "energy": 6000.0,
+      "value": 11445.9716905426,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05810639999981504
+    },
+    {
+      "energy": 6400.0,
+      "value": 11287.682220813613,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05578569999488536
+    },
+    {
+      "energy": 6800.0,
+      "value": 11129.496827997667,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05635320000874344
+    },
+    {
+      "energy": 7200.0,
+      "value": 10971.389460672846,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05764610000187531
+    },
+    {
+      "energy": 7600.0,
+      "value": 10813.399775075612,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05665880000742618
+    },
+    {
+      "energy": 8000.0,
+      "value": 10655.791775075611,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05658419999235775
+    },
+    {
+      "energy": 8400.0,
+      "value": 10498.309597003114,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05645340000046417
+    },
+    {
+      "energy": 8800.0,
+      "value": 10340.929303154575,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.055390499997884035
+    },
+    {
+      "energy": 9200.0,
+      "value": 10183.671971547632,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05662230000598356
+    },
+    {
+      "energy": 9600.0,
+      "value": 10026.51755271659,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05527779999829363
+    },
+    {
+      "energy": 10000.0,
+      "value": 9869.453849326856,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05548629999975674
+    },
+    {
+      "energy": 10400.0,
+      "value": 9712.496555642658,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.05680160000338219
+    },
+    {
+      "energy": 10800.0,
+      "value": 9555.788087041528,
+      "status": "Optimal",
+      "gap": null,
+      "seconds": 0.056297200004337355
+    }
+  ],
+  "fallback": false
+}
