@@ -1,0 +1,14 @@
+{
+  "days": 7,
+  "intervals": 1008,
+  "cost": 209578.86137318588,
+  "realized_daily_cvar90": 38140.47264204407,
+  "max_physical_error": 2.2737367544323206e-13,
+  "final_soc": 2147.3389022590904,
+  "windows": 28,
+  "fallbacks": 0,
+  "prefix_days": 7,
+  "max_prefix_difference": 797.7341282259367,
+  "prefix_match": false,
+  "passed": true
+}

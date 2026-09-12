@@ -1,5 +1,7 @@
 # C题：微网与外部电网电力调控策略——附件核验后的建模方案
 
+第四问算法改进的等价变换证明、适用条件、多模式候选与四季验证设计见 [Q4_ALGORITHM_IMPROVEMENTS.md](Q4_ALGORITHM_IMPROVEMENTS.md)。该版本明确保留禁止应急充电约束，不将全部调度问题误称为等价LP；各阶段结果独立记录。
+
 第四问均值-CVaR首版见[Q4_MODELING_REPORT.md](Q4_MODELING_REPORT.md)：未来电价未知、同历史日联合场景、90% CVaR与20%风险权重，保留未交付合同价格风险。当前按用户要求优先运行问题2/3各自的风险中性与CVaR四组对照；已知价格两组后置。全年计算和独立验收未完成前不作收益结论。
 
 第三问新增求解质量与条件负载预测对照设计见 [Q3_REFINED_MODELING.md](Q3_REFINED_MODELING.md)，保留原模型和结算口径，不将求解器目标视为实际电费。

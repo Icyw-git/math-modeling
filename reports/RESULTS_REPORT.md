@@ -1,5 +1,13 @@
 # C题附件核验、第一问试算与第二问基线/改进结果
 
+第四问多模式算法的全年连续验证已完成，完整对比见 [Q4_ADAPTIVE_ANNUAL_COMPARISON.md](Q4_ADAPTIVE_ANNUAL_COMPARISON.md)。四组各334天均通过独立验收，年末SOC均为1200 kWh，最大物理误差为2.27e-13 kWh；相对原算法，四组费用分别下降1.312%、0.084%、1.751%和1.770%，原有93次回退全部消除。改进后的问题2 CVaR以0.390%的费用增量换取2.008%的实际日费用CVaR下降；问题3 CVaR费用增加0.836%，实际CVaR仅下降0.054%，但最大日费用和应急费用更低。结果位于 `results/q4_adaptive_annual/`。
+
+此前四季连续验证见 [Q4_SEASONAL_VALIDATION.md](Q4_SEASONAL_VALIDATION.md)。16组各7天全部独立验收通过；11组费用下降、5组基本不变（0.01元容差），最终回退12次降为0次。期末SOC最大差异约8.45 kWh，统一估值后方向不变；5组应急费用增加。[四季对比PDF](../figures/q4_adaptive_seasons/seasonal_comparison.pdf)及comparison.json、source_hashes.json位于同目录。
+
+第四问择优修复7天连续回测已完成，见 [Q4_ADAPTIVE_WEEK.md](Q4_ADAPTIVE_WEEK.md)：2025年2月1日至7日四组各1008段，全部独立校验通过；相对各自原策略，费用下降0.85%—3.25%，最终回退合计6次降为0次。期末SOC差异最大约1.84 kWh，估值调整后方向不变。仅为短期结果，不代表全年改善。图表见[费用与SOC](../figures/q4_adaptive_week/cost_soc.pdf)，图表源数据及指标保存在同目录JSON。
+
+第四问最新求解质量改进见 [Q4_REPAIR_BENCHMARK.md](Q4_REPAIR_BENCHMARK.md)：修正初解校验的数组复制开销，固定模式LP在12窗口总耗时29.30秒，修复4个原回退窗口；8个可比窗口3个目标改善、5个变差，因此组合接口仅择优接受，不直接替换。旧试验实现存在校验性能瓶颈，不能据此判断完整整数算法优劣，历史记录见 [Q4_SOLVER_QUALITY.md](Q4_SOLVER_QUALITY.md)。组合接口未接入全年回测，原全年结论不变。
+
 第四问预测价格四次全年回测均已完成并独立验收：不加CVaR与加入20% CVaR分别覆盖问题2、问题3。模型见 [Q4_MODELING_REPORT.md](Q4_MODELING_REPORT.md)，完整对比、费用分解和求解限制见 [Q4_RESULTS_REPORT.md](Q4_RESULTS_REPORT.md)。加入CVaR后，问题2总费下降0.84%、实际日CVaR90下降3.59%；问题3总费上升0.86%、实际日CVaR90上升6.79%。回退次数存在差异，不能把效果全部归因于风险项。结果位于 `results/q4_cvar/`；四类图表为[价格预测](../figures/q4_cvar/price_forecast.pdf)、[费用构成](../figures/q4_cvar/cost_components.pdf)、[日费用尾部](../figures/q4_cvar/daily_tail.pdf)、[典型日调度](../figures/q4_cvar/dispatch_soc.pdf)。同目录保存全部图表源数据、来源哈希和求解质量汇总。
 
 第三问精进实验：模型设计见 [Q3_REFINED_MODELING.md](Q3_REFINED_MODELING.md)，完成后的三组全年结果见 [Q3_REFINED_RESULTS.md](Q3_REFINED_RESULTS.md)。结果使用 `results/q3_refined/`，原报告与旧代码保留；图表为 `figures/q3_refined/comparison.pdf`、`cumulative.pdf`、`selected_soc.pdf`，数值源哈希随图保存。

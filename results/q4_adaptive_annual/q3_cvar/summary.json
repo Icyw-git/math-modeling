@@ -1,0 +1,19 @@
+{
+  "total_fee": 14451963.5649325,
+  "initial_plan_fee": 14541654.171181165,
+  "increase_fee": 427208.95100396813,
+  "refund": 1218659.9643627412,
+  "cancel_penalty": 609329.9821813706,
+  "emergency_fee": 92430.42492873882,
+  "emergency_kwh": 23201.268292641624,
+  "unused_kwh": 1648302.5190772957,
+  "fallbacks": 0.0,
+  "days": 334,
+  "intervals": 48096,
+  "mean_daily_fee": 43269.35199081586,
+  "max_daily_fee": 82268.78696204191,
+  "realized_daily_cvar90": 73683.3044088,
+  "end_soc": 1200.0,
+  "complete": true,
+  "period_complete": true
+}

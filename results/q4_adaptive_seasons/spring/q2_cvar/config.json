@@ -1,0 +1,31 @@
+{
+  "variant": "q2_cvar",
+  "mode": "q2",
+  "rho": 0.2,
+  "alpha": 0.9,
+  "known_price": false,
+  "grid_size": 97,
+  "time_limit": 30,
+  "scenario_days": 28,
+  "source_hashes": {
+    "code\\run_q4_adaptive_period.py": "d2d821833f7982a2c3bfee66481ada90a56c16cffa19688a84742b98cfca4b27",
+    "code\\q4_model.py": "64eed8593192f410f69dff4f0ad1483fe10a8d61ab59118e27eda630d5b4726b",
+    "code\\solve_c_q2_enhanced.py": "58c277cb9a2e35735e9c139f76696b005dc53d3c7da5bdc58d73d87e37ca5f70",
+    "code\\solve_c_q2_baseline.py": "6136b798176085c762d7cf3751bfe9b7501690ea635f2d66dcb212c3b77137a7",
+    "code\\audit_c_attachments.py": "834630e8937801e15b74fae537f0ef9148b23b5bff06f2d8a6dbb96626f31707",
+    "code\\q4_solver_adaptive.py": "39403b3b65e596b8c7ff07c6b2df0e7928af8131ab6e7937d5adc881d499a27e",
+    "code\\q4_solver_multimode.py": "f3ba9463a27e0a1c05e5e93d9e3e630a4e8dff6ffb8fd285aa9bc7da2089c2de"
+  },
+  "input_hashes": {
+    "CUMCM2026Problems\\C题\\附件\\附件2.xlsx": "2e95fd446bfafa0d8c59577b5c2e2ea8b3f1def20dde54a3062556f4da9b4c72",
+    "CUMCM2026Problems\\C题\\附件\\附件4.xlsx": "20e9c93aeab5e8e21ae4dd15587f9e190f7408692504c1319598461cd654fe71"
+  },
+  "initial_soc": 1971.791228827643,
+  "annual_terminal_soc": 1200,
+  "period_start_day": 134,
+  "period_end_day": 141,
+  "version": 3,
+  "solver": "adaptive_multimode",
+  "recovery_limit": 30.0,
+  "refine_gap": 0.001
+}

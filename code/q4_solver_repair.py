@@ -1,4 +1,4 @@
-"""Experimental full-MIP solver; original model and annual checkpoints untouched."""
+"""Relaxation plus fixed-mode LP repair; no changes to original annual model."""
 import time
 import numpy as np
 from q4_model import base, CFG, cvar
@@ -72,44 +72,73 @@ def contract(loads,pvs,prices,w,e0,lh,vh,previous=None,charged=None,past_cash=0.
     # Check all linear rows and variable bounds independently before warm start.
     lp=h.getLp(); mat=lp.a_matrix_
     activity=np.zeros(h.getNumRow())
+    starts=np.asarray(mat.start_); indices=np.asarray(mat.index_); coefficients=np.asarray(mat.value_)
     if mat.format_==hs.MatrixFormat.kRowwise:
         for ri in range(h.getNumRow()):
-            lo,hi=mat.start_[ri:ri+2]
-            activity[ri]=sum(mat.value_[pos]*seed[mat.index_[pos]] for pos in range(lo,hi))
+            lo,hi=starts[ri:ri+2]
+            activity[ri]=coefficients[lo:hi]@seed[indices[lo:hi]]
     else:
         for col in range(h.getNumCol()):
-            lo,hi=mat.start_[col:col+2]
-            for pos in range(lo,hi): activity[mat.index_[pos]]+=mat.value_[pos]*seed[col]
+            lo,hi=starts[col:col+2]
+            np.add.at(activity,indices[lo:hi],coefficients[lo:hi]*seed[col])
     assert np.all(seed>=np.asarray(lp.col_lower_)-1e-6) and np.all(seed<=np.asarray(lp.col_upper_)+1e-6)
     assert np.all(activity>=np.asarray(lp.row_lower_)-1e-6) and np.all(activity<=np.asarray(lp.row_upper_)+1e-6)
-    enforced={ns+j*stride+5*n+1+t for j in range(k) for t in range(n)}
-    for z in sorted(enforced): h.changeColIntegrality(z,hs.HighsVarType.kInteger)
-    initial=hs.HighsSolution(); initial.col_value=seed.tolist(); initial.value_valid=True
-    h.setSolution(initial)
-    reason='No feasible incumbent'; status='not run'
-    for iteration in range(1):
-        h.setOptionValue('solver','ipm' if not enforced else 'choose')
-        h.setOptionValue('time_limit',max(.001,limit-(time.perf_counter()-begun))); h.run()
-        sol=h.getSolution(); info=h.getInfo(); status=h.modelStatusToString(h.getModelStatus())
-        use_seed=not sol.value_valid or info.primal_solution_status!=hs.SolutionStatus.kSolutionStatusFeasible
-        x=seed.copy() if use_seed else np.asarray(sol.col_value); bad=set(); residual=0.; costs=[]; ends=[]
-        for j in range(k):
-            o=ns+j*stride; c,d,s,r,e=x[o:o+n],x[o+n:o+2*n],x[o+2*n:o+3*n],x[o+3*n:o+4*n],x[o+4*n:o+5*n+1]
-            bad.update(o+5*n+1+int(t) for t in np.flatnonzero((c>1e-6)&((d>1e-6)|(r>1e-6))))
-            residual=max(residual,float(abs(x[:n]+r+d-c-s-demand[j]).max()),float(abs(np.diff(e)-eta*c+d/eta).max()))
-            if min(c.min(),d.min(),s.min(),r.min()) < -1e-6 or max(c.max(),d.max())>cap+1e-6 or e.min()<1200-1e-6 or e.max()>10800+1e-6 or abs(e[0]-e0)>1e-6 or (terminal and abs(e[-1]-1200)>1e-6): residual=np.inf
-            bill=past_cash+float(prices[j]@(x[:n] if first else units+1.5*x[n:2*n]-.5*x[2*n:3*n])+5*prices[j]@r)
-            if abs(bill-x[ci[j]])>1e-5: residual=np.inf
-            costs.append(bill); ends.append(float(e[-1]))
-        if not bad:
-            if not np.isfinite(x).all() or x[:n].min()<-1e-6 or np.any(x[:n]>qmax+1e-6) or residual>1e-6: reason='Physical verification failed'; break
-            if not first and (abs(x[:n]-x[n:2*n]+x[2*n:3*n]-prev).max()>1e-6 or np.any((x[n:2*n]>1e-6)&(x[2*n:3*n]>1e-6))): reason='Version verification failed'; break
-            risk=cvar(costs,w,alpha); mean=float(w@costs); continuation=0. if terminal else -rate*float(w@(np.asarray(ends)-1200))
-            return np.maximum(x[:n],0),dict(status=status,fallback=False,gap=float(info.mip_gap) if not use_seed and np.isfinite(info.mip_gap) else None,dual_bound=float(info.mip_dual_bound) if np.isfinite(info.mip_dual_bound) else None,seed_used=use_seed,proven_optimal=status=='Optimal',seconds=time.perf_counter()-begun,scenario_invoice_mean=mean,scenario_invoice_cvar90=risk,objective_rebuilt=(1-rho)*mean+rho*risk+continuation,scenario_costs=costs,physical_error=residual,integer_pairs=len(enforced))
-        new=bad-enforced
-        if not new or time.perf_counter()-begun>=limit: reason='Mutual exclusion unresolved'; break
-        if iteration>=4: new={ns+j*stride+5*n+1+t for j in range(k) for t in range(n)}-enforced
-        for z in sorted(new): h.changeColIntegrality(z,hs.HighsVarType.kInteger)
-        enforced.update(new)
-    return prev.copy() if not first else np.maximum(np.asarray(lh)-vh,0),dict(status=reason,fallback=True,gap=None,seconds=time.perf_counter()-begun,scenario_invoice_mean=None,scenario_invoice_cvar90=None)
 
+    offset=0. if terminal else rate*1200
+    def evaluate(x):
+        if not np.isfinite(x).all(): return None
+        if np.any(x[:n]<-1e-6) or np.any(x[:n]>qmax+1e-6): return None
+        if not first and (abs(x[:n]-x[n:2*n]+x[2*n:3*n]-prev).max()>1e-6 or np.any((x[n:2*n]>1e-6)&(x[2*n:3*n]>1e-6))): return None
+        costs=[]; ends=[]; error=0.
+        for j in range(k):
+            o=ns+j*stride
+            c,d,s,r,e=x[o:o+n],x[o+n:o+2*n],x[o+2*n:o+3*n],x[o+3*n:o+4*n],x[o+4*n:o+5*n+1]
+            if min(c.min(),d.min(),s.min(),r.min()) < -1e-6 or max(c.max(),d.max())>cap+1e-6 or e.min()<1200-1e-6 or e.max()>10800+1e-6: return None
+            if np.any((c>1e-6)&((d>1e-6)|(r>1e-6))): return None
+            error=max(error,float(abs(x[:n]+r+d-c-s-demand[j]).max()),float(abs(np.diff(e)-eta*c+d/eta).max()),abs(e[0]-e0))
+            if terminal: error=max(error,abs(e[-1]-1200))
+            bill=past_cash+float(prices[j]@(x[:n] if first else units+1.5*x[n:2*n]-.5*x[2*n:3*n])+5*prices[j]@r)
+            error=max(error,abs(bill-x[ci[j]]))
+            costs.append(bill); ends.append(e[-1])
+        if error>1e-6: return None
+        mean=float(w@costs); risk=cvar(costs,w,alpha)
+        value=(1-rho)*mean+rho*risk+(0. if terminal else -rate*float(w@(np.asarray(ends)-1200)))
+        return dict(objective_rebuilt=value,scenario_invoice_mean=mean,scenario_invoice_cvar90=risk,scenario_costs=costs,physical_error=float(error))
+    best=seed.copy(); best_stats=evaluate(best)
+    if best_stats is None: raise ValueError('Initial feasible solution failed independent check')
+    selected='seed'; stages=[]; lower=None; relaxed=None
+    h.setOptionValue('solver','ipm')
+    for phase in ('relaxation','fixed_mode'):
+        remaining=limit-(time.perf_counter()-begun)
+        if remaining<=0: break
+        if phase=='fixed_mode':
+            if relaxed is None: break
+            for j in range(k):
+                o=ns+j*stride
+                for t in range(n):
+                    # Retain the sign of the relaxed storage energy change.
+                    # Simultaneous emergency is removed by re-solving constraints.
+                    charge=relaxed[o+t]*eta-relaxed[o+n+t]/eta>1e-7
+                    z=o+5*n+1+t
+                    h.changeColBounds(z,float(charge),float(charge))
+        allowance=min(remaining,max(.001,limit*.4)) if phase=='relaxation' else remaining
+        h.setOptionValue('time_limit',max(.001,allowance))
+        phase_start=time.perf_counter(); h.run()
+        sol=h.getSolution(); info=h.getInfo()
+        status=h.modelStatusToString(h.getModelStatus())
+        stages.append(dict(phase=phase,status=status,seconds=time.perf_counter()-phase_start))
+        if phase=='relaxation' and status=='Optimal':
+            lower=float(h.getObjectiveValue()+offset)
+        if not sol.value_valid or info.primal_solution_status!=hs.SolutionStatus.kSolutionStatusFeasible: continue
+        x=np.asarray(sol.col_value)
+        if phase=='relaxation': relaxed=x.copy()
+        checked=evaluate(x)
+        if checked is not None and checked['objective_rebuilt']<=best_stats['objective_rebuilt']+1e-7:
+            best=x.copy(); best_stats=checked; selected=phase
+        if selected=='relaxation': break
+    difference=None if lower is None else max(0.,best_stats['objective_rebuilt']-lower)
+    gap=None if difference is None else difference/max(1.,abs(best_stats['objective_rebuilt']))
+    return np.maximum(best[:n],0),dict(best_stats,status=selected,fallback=False,seed_used=selected=='seed',
+        seconds=time.perf_counter()-begun,stages=stages,lower_bound=lower,absolute_gap=difference,gap=gap,
+        proven_optimal=difference is not None and difference<=1e-6,integer_pairs=0,
+        gap_definition='certified relaxation gap in rebuilt objective units; not a solver MIP gap')
