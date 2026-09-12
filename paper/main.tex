@@ -202,6 +202,15 @@ $M$          & $\text{kWh}$ & 单一时段交流吞吐电量上限，$M = P_{\ma
 \end{enumerate}
 基于上述思路，全天 24 小时划分为 144 个 10 分钟的时段，我们可以在满足各项物理约束的前提下，建立线性规划模型来求解最优的购电与充放电方案。
 
+为便于核对模型输出与物理过程，图~\ref{fig:q1_dispatch}给出了逐 10 分钟调度台账中的能量流、储能状态和分时电价。可以看到，低价时段储能净出力为负，表示优先充电；在负荷较高或电价上升时，储能释放电量以减少计划购电。SOC 始终位于 $1200\sim10800\text{ kWh}$ 的安全区间，并在 24:00 回到初始值 $6000\text{ kWh}$。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.94\textwidth]{../figures/q1_dispatch_profile.pdf}
+    \caption{问题一确定性调度下的能量流、储能 SOC 与分时电价轨迹}
+    \label{fig:q1_dispatch}
+\end{figure}
+
 \subsection{数学模型的建立}
 设全天划分为 $T = 144$ 个离散调度时段，每个时段长度 $\Delta t = \frac{1}{6}\text{ h}$（即 10 分钟）。对于时段 $t = 0, 1, \dots, T-1$：
 
@@ -773,11 +782,13 @@ $M$          & $\text{kWh}$ & 单一时段交流吞吐电量上限，$M = P_{\ma
     \begin{minipage}[t]{0.48\textwidth}
         \centering
         \includegraphics[width=\textwidth]{../figures/q4_cvar/daily_tail.pdf}
-        \caption*{(b) 最贵 20\% 日期的尾部风险经验分布曲线}
+        \caption*{(b) 实际日费用第 80--100 百分位的经验尾部分布}
     \end{minipage}
     \caption{波动电价下问题二与问题三策略的费用结构与尾部极端风险对比}
     \label{fig:q4_cost_tail}
 \end{figure}
+
+右图展示全年回测日费用的第 80--100 百分位区间，用于观察样本尾部形态；表中的实际日费用 CVaR$_{90}$ 按最高 10\% 日费用计算，二者不作概念混用。
 
 表 \ref{tab:q4_annual_comparison} 与图 \ref{fig:q4_cost_tail} 的结果可作如下解读：
 \begin{enumerate}
@@ -916,8 +927,8 @@ $M$          & $\text{kWh}$ & 单一时段交流吞吐电量上限，$M = P_{\ma
 \textbf{result1.xlsx}       & 结果表格 & 问题一在 0:00 制定的全天 144 个时段计划购电与 4 小时充放电最终结果 \\
 \textbf{result2.xlsx}       & 结果表格 & 问题二正式期（334 天）计划购电量、充放电量及紧急购电时段明细 \\
 \textbf{result3.xlsx}       & 结果表格 & 问题三正式期基准计划购电量、滚动调整购电量、充放电及紧急购电量 \\
-\texttt{results/q4_cvar/q2_cvar/} & 结果目录 & 问题四问题二架构 CVaR 策略的逐日合同、台账与验收文件 \\
-\texttt{results/q4_cvar/q3_cvar/} & 结果目录 & 问题四问题三架构 CVaR 策略的逐日合同、台账与验收文件 \\
+\texttt{results/q4\_cvar/q2\_cvar/} & 结果目录 & 问题四问题二架构 CVaR 策略的逐日合同、台账与验收文件 \\
+\texttt{results/q4\_cvar/q3\_cvar/} & 结果目录 & 问题四问题三架构 CVaR 策略的逐日合同、台账与验收文件 \\
 \midrule[0.5pt]
 \texttt{solve\_c\_q1\_pilot.py}    & Python 源码 & 问题一多时段经济调度 LP/MILP 快速求解算法与参数敏感性测试 \\
 \texttt{solve\_c\_q2\_enhanced.py} & Python 源码 & 问题二历史因果预测择优、分位数安全余量与 48h 滚动前瞻优化算法 \\
