@@ -38,3 +38,12 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Reproducible simulation details: keep locally, do not upload.
+# Keep config.json, summary.json, verification.json and daily.csv for review.
+/results/**/day_[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9].json
+/results/**/ledger.csv
+/results/**/progress.json
+
+# Deliberately retain source code, reports, original problem attachments,
+# final PDF figures and their source data. No global CSV/JSON/PDF exclusion.
