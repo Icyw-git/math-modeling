@@ -1,0 +1,23 @@
+{
+  "results\\q4_cvar\\q2_neutral\\config.json": "7137f3fea5ad4050df822885a3f53c404f7786f1bf38e26132a58703a0ada8a7",
+  "results\\q4_cvar\\q2_neutral\\summary.json": "03528719ef41c1d244042e8c18c9d665fe2a38a44b463122e387f09edab32cee",
+  "results\\q4_cvar\\q2_neutral\\verification.json": "2fcb08a0b29320009cc6d634bde6f406b70e5f2a5ae4c1080c3eb574b64c3749",
+  "results\\q4_cvar\\q2_neutral\\daily.csv": "6857dba5a618e7abe54cc2534c4226fee41d80270d0acc4ea0ff96b70843b321",
+  "results\\q4_cvar\\q2_neutral\\ledger.csv": "79d93325c6ae0da32aa8b8c0ca9af227fcb48caecc2050eec35649ec0325fda5",
+  "results\\q4_cvar\\q2_cvar\\config.json": "c49d9285777f409f2b1c06653256eb034840b399e0c38ec22e03f54329864255",
+  "results\\q4_cvar\\q2_cvar\\summary.json": "7847dfe408842e79b3901998f1ebacca3670fba4fed8b8ab7e66c9b912eb7069",
+  "results\\q4_cvar\\q2_cvar\\verification.json": "5e0e5e4986cee29a3f1a5d314cc547c7aa330aedbcd4d56a367632a9f7587316",
+  "results\\q4_cvar\\q2_cvar\\daily.csv": "2e540746c6bb6973adf0834689fe8159b2e181154207441c5f566ed5be9a42ae",
+  "results\\q4_cvar\\q2_cvar\\ledger.csv": "14b0a512f99bee67a48ff24c8ce40275cdaf3154ba0abc926aeb4b8809f3e908",
+  "results\\q4_cvar\\q3_neutral\\config.json": "61e19c80d3d744a77e6df7705cb18bbd8a846418ec1eb980190502bedfd58ee3",
+  "results\\q4_cvar\\q3_neutral\\summary.json": "2d10574563c6b05d53c181fd3a4ca4ad7dda4d573281618a161621ed862f1f68",
+  "results\\q4_cvar\\q3_neutral\\verification.json": "945b47d0f2b66200dd11887de841ebd2dd03a0bbca3d1da3beb1bfb6997ecbc9",
+  "results\\q4_cvar\\q3_neutral\\daily.csv": "2e344f833d13bec2d4d31c147f190f97d54df355bc403c46f171ee3f4a315f3f",
+  "results\\q4_cvar\\q3_neutral\\ledger.csv": "71ab5446e9a146f2239876ee6a6ce14d559e4ca0862990462d11460c984b70bb",
+  "results\\q4_cvar\\q3_cvar\\config.json": "763f55aed873df70de2ddb1d1d11377c5f97fcd31d8182b15516c49300b937d9",
+  "results\\q4_cvar\\q3_cvar\\summary.json": "279a38388b43ede79b9b590f31ca8eb86ecdbe1fe58b23d606d3f34e344d76c9",
+  "results\\q4_cvar\\q3_cvar\\verification.json": "1b657bb2fb1782f1fd6323ee17343fa5f83ca2e454c28afa9ca1bb528bb072b0",
+  "results\\q4_cvar\\q3_cvar\\daily.csv": "e546ed88dcc44ee2d050b4163ab004800eadc46040fb31131c455cefc73ec04d",
+  "results\\q4_cvar\\q3_cvar\\ledger.csv": "30aacf69f50ac56c40f3d2f70af788fbd9be8ec03b28eb5d669c68ae79590b01",
+  "code\\report_c_q4_cvar.py": "90ec0584c574ecac19bf1b0ff8f071af8eb87b5408d575a70f8dadec46df5288"
+}

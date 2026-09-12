@@ -1,6 +1,6 @@
 # C题附件核验、第一问试算与第二问基线/改进结果
 
-第四问预测价格实验正在运行：不加CVaR与加入20% CVaR两类，分别覆盖问题2、问题3，共四次全年回测。模型见 [Q4_MODELING_REPORT.md](Q4_MODELING_REPORT.md)，验收和结果状态见 [Q4_RESULTS_REPORT.md](Q4_RESULTS_REPORT.md)。输出位于 `results/q4_cvar/`；全部完成并验收后才生成 `figures/q4_cvar/` 的价格预测、费用构成、日费用尾部和典型日调度四类PDF及源数据，不以部分日期结果代替全年结论。
+第四问预测价格四次全年回测均已完成并独立验收：不加CVaR与加入20% CVaR分别覆盖问题2、问题3。模型见 [Q4_MODELING_REPORT.md](Q4_MODELING_REPORT.md)，完整对比、费用分解和求解限制见 [Q4_RESULTS_REPORT.md](Q4_RESULTS_REPORT.md)。加入CVaR后，问题2总费下降0.84%、实际日CVaR90下降3.59%；问题3总费上升0.86%、实际日CVaR90上升6.79%。回退次数存在差异，不能把效果全部归因于风险项。结果位于 `results/q4_cvar/`；四类图表为[价格预测](../figures/q4_cvar/price_forecast.pdf)、[费用构成](../figures/q4_cvar/cost_components.pdf)、[日费用尾部](../figures/q4_cvar/daily_tail.pdf)、[典型日调度](../figures/q4_cvar/dispatch_soc.pdf)。同目录保存全部图表源数据、来源哈希和求解质量汇总。
 
 第三问精进实验：模型设计见 [Q3_REFINED_MODELING.md](Q3_REFINED_MODELING.md)，完成后的三组全年结果见 [Q3_REFINED_RESULTS.md](Q3_REFINED_RESULTS.md)。结果使用 `results/q3_refined/`，原报告与旧代码保留；图表为 `figures/q3_refined/comparison.pdf`、`cumulative.pdf`、`selected_soc.pdf`，数值源哈希随图保存。
 

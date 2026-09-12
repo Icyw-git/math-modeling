@@ -13,7 +13,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import pandas as pd
 import json
-from run_c_q4_cvar import VARIANTS
+import hashlib
 
 
 def main():
@@ -22,12 +22,20 @@ def main():
     for name in ['q2_neutral','q2_cvar','q3_neutral','q3_cvar']:
         p=ROOT/'results/q4_cvar'/name
         s=json.loads((p/'summary.json').read_text()); v=json.loads((p/'verification.json').read_text())
-        assert s['complete'] and v['passed'] and s['days']==334
+        assert s['complete'] and v['passed'] and s['days']==334 and v['days']==334
         records.append(dict(variant=name,**s)); summaries[name]=s
         frames[name]=pd.read_csv(p/'ledger.csv')
         windows=[w for f in sorted(p.glob('day_*.json')) for w in json.loads(f.read_text(encoding='utf8'))['windows'] if w['status']!='contract_frozen']
         quality.append(dict(variant=name,contract_windows=len(windows),fallbacks=sum(w['fallback'] for w in windows),max_reported_gap=max((w['gap'] for w in windows if w.get('gap') is not None),default=None),max_window_seconds=max(w['seconds'] for w in windows),status_counts={status:sum(w['status']==status for w in windows) for status in sorted(set(w['status'] for w in windows))},verification=v))
     summary=pd.DataFrame(records); summary.to_csv(dest/'comparison.csv',index=False)
+    daily_sources=[]
+    for name in summaries:
+        daily=pd.read_csv(ROOT/'results/q4_cvar'/name/'daily.csv')
+        daily.insert(0,'variant',name); daily_sources.append(daily)
+    pd.concat(daily_sources,ignore_index=True).to_csv(dest/'daily_comparison.csv',index=False)
+    sources=[ROOT/'results/q4_cvar'/name/file for name in summaries for file in ('config.json','summary.json','verification.json','daily.csv','ledger.csv')]
+    sources.append(Path(__file__))
+    (dest/'sources.json').write_text(json.dumps({str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sources},indent=2),encoding='utf8')
     (dest/'quality.json').write_text(json.dumps(quality,indent=2,ensure_ascii=False),encoding='utf8')
     plt.rcParams.update({'font.sans-serif':['Microsoft YaHei','SimHei','DejaVu Sans'],'axes.unicode_minus':False,'font.size':10,'pdf.fonttype':42})
     labels=['问题2\n期望费用','问题2\nCVaR','问题3\n期望费用','问题3\nCVaR']
@@ -36,15 +44,16 @@ def main():
     fig,ax=plt.subplots(figsize=(9,4)); x=np.arange(4)
     normal=summary.initial_plan_fee+summary.increase_fee-summary.refund+summary.cancel_penalty
     ax.bar(x,normal/1e6,label='普通合同与调整结算',color='#4878a8'); ax.bar(x,summary.emergency_fee/1e6,bottom=normal/1e6,label='应急费用',color='#da8853')
-    ax.set_xticks(x,labels); ax.set_ylabel('全年费用 / 百万元'); ax.legend(frameon=False); save(fig,'cost_components')
+    for i,total in enumerate(summary.total_fee): ax.text(i,total/1e6+.08,f'{total/1e6:.3f}',ha='center',fontsize=9)
+    ax.set_ylim(0,16); ax.set_xticks(x,labels); ax.set_ylabel('全年费用 / 百万元'); ax.legend(frameon=False,loc='lower center',bbox_to_anchor=(.5,1.02),ncol=2); save(fig,'cost_components')
     fig,axes=plt.subplots(1,2,figsize=(10,4))
     for ax,mode in zip(axes,['q2','q3']):
         for kind,label in [('neutral','期望费用'),('cvar','CVaR')]:
             d=pd.read_csv(ROOT/'results/q4_cvar'/f'{mode}_{kind}'/'daily.csv')
             y=np.sort(d.total_fee.to_numpy()); ranks=(np.arange(len(y))+.5)/len(y)
-            ax.plot(ranks,y/1e4,label=label)
+            ax.plot(ranks,y/1e4,label=label,linestyle='--' if kind=='cvar' else '-')
         ax.set_xlim(.8,1); ax.set_xlabel('实际日费用经验分位'); ax.set_ylabel(f'{"问题2" if mode=="q2" else "问题3"} 日费用 / 万元'); ax.legend(frameon=False)
-    save(fig,'daily_tail')
+    fig.tight_layout(); save(fig,'daily_tail')
     chosen=['2025-03-20','2025-06-21','2025-09-23','2025-12-21']
     fig,axes=plt.subplots(2,2,figsize=(10,6)); source=[]
     for ax,date in zip(axes.flat,chosen):
@@ -53,14 +62,18 @@ def main():
         ax.set_xlabel(f'{date} 时刻 / h'); ax.set_ylabel('价格 / (元/kWh)'); ax.legend(frameon=False)
     pd.concat(source).to_csv(dest/'specified_days_source.csv',index=False); fig.tight_layout(); save(fig,'price_forecast')
     fig,axes=plt.subplots(4,2,figsize=(12,11))
+    pd.concat([frame.assign(variant=name) for name,frame in frames.items() if name.endswith('_cvar')]).query('date in @chosen').to_csv(dest/'dispatch_source.csv',index=False)
     for row,date in enumerate(chosen):
         for col,mode in enumerate(['q2','q3']):
             d=frames[mode+'_cvar'].query('date == @date'); ax=axes[row,col]; twin=ax.twinx()
             ax.plot(d.interval/6,d.q*6,label='普通购电',color='#4878a8'); ax.plot(d.interval/6,d.emergency_kwh*6,label='应急购电',color='#da8853')
+            ax.plot(d.interval/6,(d.discharge_kwh-d.charge_kwh)*6,label='储能净放电',color='#8662a5',linewidth=.7,alpha=.8)
             twin.plot(d.interval/6,d.soc_start_kwh/1000,label='SOC',color='#548f63',linestyle='--'); twin.set_ylim(0,12); twin.set_ylabel('储能 / MWh')
             ax.set_ylabel('功率 / kW'); ax.set_xlabel(f'{date} {"问题2" if col==0 else "问题3"} 时刻 / h')
-            if row==0: ax.legend(loc='upper left',frameon=False); twin.legend(loc='upper right',frameon=False)
-    fig.tight_layout(); save(fig,'dispatch_soc')
+            if row==0 and col==0:
+                handles,legend_labels=ax.get_legend_handles_labels(); extra,extra_labels=twin.get_legend_handles_labels()
+                fig.legend(handles+extra,legend_labels+extra_labels,loc='upper center',ncol=4,frameon=False)
+    fig.tight_layout(rect=(0,0,1,.965)); save(fig,'dispatch_soc')
     tables=[]; four=[]; emergencies=[]
     for mode in ('q2','q3'):
         for date in chosen:
@@ -88,6 +101,21 @@ def main():
     for mode in ('q2','q3'):
         a=summaries[mode+'_neutral']; b=summaries[mode+'_cvar']
         lines.append(f'- {mode}：CVaR方案相对风险中性，总费变化{b["total_fee"]-a["total_fee"]:+.2f}元；实际日CVaR90变化{b["realized_daily_cvar90"]-a["realized_daily_cvar90"]:+.2f}元。正值表示更贵或尾部更高，负值表示改善。')
+        lines.append(f'  总费变化率{100*(b["total_fee"]/a["total_fee"]-1):+.2f}%；实际日CVaR90变化率{100*(b["realized_daily_cvar90"]/a["realized_daily_cvar90"]-1):+.2f}%；应急费变化{b["emergency_fee"]-a["emergency_fee"]:+.2f}元。')
+    lines+=['','问题2的CVaR方案总费用和实际尾部均下降；问题3则两项均上升，不能声称风险控制必然改善回测结果。两组回退次数不同，改善或恶化不能全部归因于风险项。场景误差、两阶段补救及实时期望控制也可能造成规划风险与实际风险不一致，这些是待验证机制，不是已证实原因。没有根据全年结果反向调参。',
+            '', '实际日费用CVaR90按最贵10%的概率质量计算：334天对应33.4天，即最高33天加第34天的0.4权重，再除以33.4。它不是窗口预测的场景CVaR。',
+            '', '## 费用与电量分解','',
+            '| 策略 | 日前费用/元 | 增购费用/元 | 退款/元 | 取消罚金/元 | 应急电量/kWh | 未利用电量/kWh |',
+            '| --- | ---: | ---: | ---: | ---: | ---: | ---: |']
+    for n,s in summaries.items():
+        lines.append(f'| {n} | {s["initial_plan_fee"]:.2f} | {s["increase_fee"]:.2f} | {s["refund"]:.2f} | {s["cancel_penalty"]:.2f} | {s["emergency_kwh"]:.2f} | {s["unused_kwh"]:.2f} |')
+    lines+=['','总费用=日前费用+增购费用-退款+取消罚金+应急费用。未利用电量包含可弃用的富余供给，不直接等同于弃光量。',
+            '', '## 图表解读','',
+            '- [费用构成](../figures/q4_cvar/cost_components.pdf)：比较全年结算费用及应急部分。',
+            '- [实际日费用尾部](../figures/q4_cvar/daily_tail.pdf)：分别比较问题2、3最贵20%日期的经验分位曲线；两组曲线的日期排序各自独立。',
+            '- [价格预测对比](../figures/q4_cvar/price_forecast.pdf)：四个预先指定日期的0时价格预测与真实价格，不按事后表现挑选日期。',
+            '- [典型日调度](../figures/q4_cvar/dispatch_soc.pdf)：CVaR策略的普通购电、应急购电、储能净放电及SOC；净放电负值表示充电。完整四组对比见前两图。',
+            '', '图表源数据：comparison.csv、daily_comparison.csv、specified_days_source.csv、dispatch_source.csv；输入与生成脚本SHA256见sources.json。']
     lines+=['','## 独立验收和求解质量','']
     for item in quality:
         v=item['verification']; lines.append(f'- {item["variant"]}：{item["contract_windows"]}个合同窗口，回退{item["fallbacks"]}次，最大报告gap={item["max_reported_gap"]}，最大物理残差={v["max_physical_error"]:.3g} kWh，年末SOC={v["final_soc"]:.6f} kWh。')
